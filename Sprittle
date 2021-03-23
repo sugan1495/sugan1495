@@ -1,0 +1,175 @@
+import org.openqa.selenium.*;
+
+class Coding
+{
+
+//driver setup
+try{
+System.Setproperty("Webdriver.chrome.driver","C:\\chromedruver.exe");
+Webdriver driver= new ChromeDriver();
+}
+
+catch(Exception e)
+{
+e.prinStackTrace();
+system.out.println("Failed");
+}
+
+//Navigate to URL
+public void navigate_Url(String url) throws interruptedException{
+try{
+driver.manage().windows().maximize();
+driver.get(url);
+Thread.sleep(2000);
+
+}
+catch (Exception e){
+e.prinStackTrace();
+system.out.println("Link down");
+}
+
+//Click on new Event
+
+public void click_newEvent(){
+try{
+Webelement newEvent= driver.findElement(By.linkText("https://autotrucktd.testing.reach24.net/event/incidents/new").click());
+}
+catch(ElementNotVisibleException e1)
+{
+try{
+JavascriptExecutor js =(JavascriptExecutor) driver;
+Thread.sleep(3000);
+js.executeScript("arguments[0].click();",newEvent);
+}
+catch (Exception e){
+e.prinStackTrace();
+system.out.println("Exception while clicking the element");
+}
+}
+}
+//Equipment Type
+
+public void equipment_type(){
+try{
+Webelement equipmentType= driver.findElement(By.xpath("//span[@id='select2-chosen-11']").clear();
+equipmentType.SendKeys("chassis");
+JavascriptExecutor js =(JavascriptExecutor) driver;
+Thread.sleep(3000);
+js.executeScript("arguments[0].scrollIntoView(true);",equipmentType);
+equipmentType.sendKeys(keys.ENTER);
+}
+catch(exception e){
+e.printStackTrace();
+System.out.println("failed to select equipment type");
+}
+}
+
+//container #
+public void contianer_num(){
+try{
+Webelement containerNum= driver.findElement(By.id("container_number").clear();
+equipmentType.containerNum("ABC");
+}
+catch(exception e){
+e.printStackTrace();
+System.out.println("failed to provide container number");
+}
+}
+// Equipment Provider
+
+public void equipment_provider(){
+try{
+
+Select equipmentProvider= new select(driver.findElement(By.xpath("//div[@id="s2id_event_iep_id"]//a[@class="select2-choice"])));
+equipmentprovider.selectByVisibletext("1370-102815 KIEWIT-NUVUMIUT (LAVAL - QC)");
+}
+catch(exception e){
+e.printStackTrace();
+System.out.println("failed to select the provider");
+}
+}
+
+//Driver/Inspector
+public void driver_Inspector(){
+try{
+Webelement driverInspec= driver.findElement(By.xpath("//div[@id="s2id_event_driver_id"]//span[@id="select2-chosen-8"]")).click();
+JavascriptExecutor js =(JavascriptExecutor) driver;
+Thread.sleep(3000);
+js.executeScript("arguments[0].scrollIntoView(true);",equipmentType);
+equipmentType.sendKeys(keys.ENTER);
+}
+catch(exception e){
+e.printStackTrace();
+System.out.println("failed to provide driver/inspector details");
+}
+}
+
+//driver unit
+public void driverUnit(){
+try{
+Webelement driverUnit= driver.findElement(By.id("incident_driver_with_unit_false").click());
+}
+
+catch (Exception e){
+e.prinStackTrace();
+system.out.println("Exception while clicking the false button");
+}
+}
+//loaded?
+
+public void loaded(){
+try{
+Webelement loaded= driver.findElement(By.id("event_loaded").click());
+}
+
+catch (Exception e){
+e.prinStackTrace();
+system.out.println("Exception while clicking the loaded button");
+}
+}
+//address
+Jl. Ngagel Jaya Indah No.15, Baratajaya, Kec. Gubeng, Kota SBY, Jawa Timur 60284, Indonesia
+
+public void address(String address) throws interruptedException{
+try{
+Webelement address= driver.findElement(By.id("event_address").click());
+address.clear();
+address.sendtext(address);
+}
+catch (Exception e){
+e.prinStackTrace();
+system.out.println("failed to enter adddress");
+}
+}
+
+//add service
+
+
+public void addservice(){
+try{
+Webelement servicecountbefore= driver.findElement(By.xpath("//span[@id='service-count"]").getText();
+Webelement servicebutton= driver.findElement(By.id("event-add-service").click();
+Webelement servicecountafter= driver.findElement(By.xpath("//span[@id='service-count"]").getText();
+if(!servicecountbefore.equalsto(servicecountafter){
+System.out.println("Service event created");
+}
+else{
+System.out.println("Service event not created");
+}
+}
+catch(exception e){
+e.printStackTrace();
+System.out.println("failed to create event");
+}
+}
+
+
+public static void main(String args[]){
+Sprittle S1= new Sprittle();
+S1.navigate_Url("https://autotrucktd.testing.reach24.net/");
+s1.address("Maruthi Nagar, Tiruchirappalli, Tamil Nadu 621216, India");
+}
+}
+
+
+
