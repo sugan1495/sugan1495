@@ -2,26 +2,12 @@ import org.openqa.selenium.*;
 
 class Coding
 {
-
-//driver setup
-try{
-System.Setproperty("Webdriver.chrome.driver","C:\\chromedruver.exe");
-Webdriver driver= new ChromeDriver();
-}
-
-catch(Exception e)
-{
-e.prinStackTrace();
-system.out.println("Failed");
-}
-
 //Navigate to URL
 public void navigate_Url(String url) throws interruptedException{
 try{
 driver.manage().windows().maximize();
 driver.get(url);
 Thread.sleep(2000);
-
 }
 catch (Exception e){
 e.prinStackTrace();
@@ -32,11 +18,7 @@ system.out.println("Link down");
 
 public void click_newEvent(){
 try{
-Webelement newEvent= driver.findElement(By.linkText("https://autotrucktd.testing.reach24.net/event/incidents/new").click());
-}
-catch(ElementNotVisibleException e1)
-{
-try{
+driver.findElement(By.linkText("https://autotrucktd.testing.reach24.net/event/incidents/new").click());
 JavascriptExecutor js =(JavascriptExecutor) driver;
 Thread.sleep(3000);
 js.executeScript("arguments[0].click();",newEvent);
@@ -46,12 +28,12 @@ e.prinStackTrace();
 system.out.println("Exception while clicking the element");
 }
 }
-}
 //Equipment Type
 
 public void equipment_type(){
 try{
-Webelement equipmentType= driver.findElement(By.xpath("//span[@id='select2-chosen-11']").clear();
+Webelement equipmentType= driver.findElement(By.xpath("//span[@id='select2-chosen-11']"));
+equipmentType.clear();
 equipmentType.SendKeys("chassis");
 JavascriptExecutor js =(JavascriptExecutor) driver;
 Thread.sleep(3000);
@@ -65,10 +47,10 @@ System.out.println("failed to select equipment type");
 }
 
 //container #
-public void contianer_num(){
+public void container_num(){
 try{
-Webelement containerNum= driver.findElement(By.id("container_number").clear();
-equipmentType.containerNum("ABC");
+webElement containerNum= driver.findElement(By.id("container_number"));
+containerNum.clear();
 }
 catch(exception e){
 e.printStackTrace();
@@ -79,7 +61,6 @@ System.out.println("failed to provide container number");
 
 public void equipment_provider(){
 try{
-
 Select equipmentProvider= new select(driver.findElement(By.xpath("//div[@id="s2id_event_iep_id"]//a[@class="select2-choice"])));
 equipmentprovider.selectByVisibletext("1370-102815 KIEWIT-NUVUMIUT (LAVAL - QC)");
 }
@@ -107,7 +88,7 @@ System.out.println("failed to provide driver/inspector details");
 //driver unit
 public void driverUnit(){
 try{
-Webelement driverUnit= driver.findElement(By.id("incident_driver_with_unit_false").click());
+driver.findElement(By.id("incident_driver_with_unit_false").click());
 }
 
 catch (Exception e){
@@ -119,7 +100,7 @@ system.out.println("Exception while clicking the false button");
 
 public void loaded(){
 try{
-Webelement loaded= driver.findElement(By.id("event_loaded").click());
+driver.findElement(By.id("event_loaded").click());
 }
 
 catch (Exception e){
@@ -132,7 +113,8 @@ Jl. Ngagel Jaya Indah No.15, Baratajaya, Kec. Gubeng, Kota SBY, Jawa Timur 60284
 
 public void address(String address) throws interruptedException{
 try{
-Webelement address= driver.findElement(By.id("event_address").click());
+Webelement address= driver.findElement(By.id("event_address"));
+address.click();
 address.clear();
 address.sendtext(address);
 }
@@ -145,11 +127,11 @@ system.out.println("failed to enter adddress");
 //add service
 
 
-public void addservice(){
+public void addService(){
 try{
-Webelement servicecountbefore= driver.findElement(By.xpath("//span[@id='service-count"]").getText();
-Webelement servicebutton= driver.findElement(By.id("event-add-service").click();
-Webelement servicecountafter= driver.findElement(By.xpath("//span[@id='service-count"]").getText();
+String servicecountbefore= driver.findElement(By.xpath("//span[@id='service-count"]").getText();
+driver.findElement(By.id("event-add-service").click();
+String servicecountafter= driver.findElement(By.xpath("//span[@id='service-count"]").getText();
 if(!servicecountbefore.equalsto(servicecountafter){
 System.out.println("Service event created");
 }
@@ -165,9 +147,19 @@ System.out.println("failed to create event");
 
 
 public static void main(String args[]){
-Sprittle S1= new Sprittle();
-S1.navigate_Url("https://autotrucktd.testing.reach24.net/");
+System.Setproperty("Webdriver.chrome.driver","C:\\chromedruver.exe");
+Webdriver driver= new ChromeDriver();
+Sprittle s1= new Sprittle();
+s1.navigate_Url("https://autotrucktd.testing.reach24.net/");
+s1.click_newEvent();
+s1.equipment_type();
+s1.container_num();
+s1.equipment_provider();
+s1.driver_Inspector();
+s1.driverUnit();
+s1.void loaded();
 s1.address("Maruthi Nagar, Tiruchirappalli, Tamil Nadu 621216, India");
+s1.addService();
 }
 }
 
